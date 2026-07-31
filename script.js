@@ -1,8 +1,8 @@
 /*
-  Reveal leve e acessível:
-  - Respeita a preferência de movimento reduzido do usuário.
-  - Usa IntersectionObserver, sem eventos pesados de scroll.
-  - Remove cada elemento da observação após revelá-lo.
+  Reveal leve e seguro:
+  - Conteúdo permanece visível caso o JavaScript não carregue.
+  - A classe global só é ativada após validar os recursos necessários.
+  - Respeita preferência de movimento reduzido.
 */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,7 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
     "(prefers-reduced-motion: reduce)"
   );
 
-  // Mostra todos os elementos sem animação quando o usuário prefere menos movimento.
+  // Sem elementos, não há nada para animar.
+  if (!revealElements.length) {
+    return;
+  }
+
+  // Usuário pediu menos movimento: mantém tudo visível.
   if (prefersReducedMotion.matches) {
     revealElements.forEach((element) => {
       element.classList.add("is-visible");
@@ -20,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Fallback para navegadores sem suporte a IntersectionObserver.
+  // Navegador sem suporte: mantém tudo visível.
   if (!("IntersectionObserver" in window)) {
     revealElements.forEach((element) => {
       element.classList.add("is-visible");
@@ -28,6 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return;
   }
+
+  // Ativa o estado inicial da animação somente com JavaScript funcional.
+  document.documentElement.classList.add("js-reveal-ready");
 
   const observer = new IntersectionObserver(
     (entries, currentObserver) => {
@@ -37,8 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         entry.target.classList.add("is-visible");
-
-        // Depois de aparecer, o elemento não precisa mais ser observado.
         currentObserver.unobserve(entry.target);
       });
     },
