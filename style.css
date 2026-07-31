@@ -820,3 +820,28 @@ h3 {
     grid-template-columns: minmax(0, 0.82fr) minmax(30rem, 1.18fr);
   }
 }
+/* ========================================
+   16. REVEAL VIA INTERSECTION OBSERVER
+======================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Usuários que pedem menos movimento visualizam tudo imediatamente */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
