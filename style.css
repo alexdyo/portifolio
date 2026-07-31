@@ -821,16 +821,14 @@ h3 {
   }
 }
 /* ========================================
-   16. REVEAL VIA INTERSECTION OBSERVER
+   REVEAL — ANIMAÇÃO DE ENTRADA SEGURA
 ======================================== */
 
-/* Conteúdo fica visível por padrão, mesmo se o JavaScript falhar */
 .reveal {
   opacity: 1;
-  transform: none;
+  transform: translateY(0);
 }
 
-/* Só esconde conteúdo quando o JavaScript confirmou que está funcionando */
 .js-reveal-ready .reveal {
   opacity: 0;
   transform: translateY(1.25rem);
@@ -845,27 +843,11 @@ h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .js-reveal-ready .reveal {
+  .reveal,
+  .js-reveal-ready .reveal,
+  .js-reveal-ready .reveal.is-visible {
     opacity: 1;
     transform: none;
     transition: none;
   }
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Usuários que pedem menos movimento visualizam tudo imediatamente */
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-.reveal {
-  opacity: 1 !important;
-  transform: none !important;
 }
