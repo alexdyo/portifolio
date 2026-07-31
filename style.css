@@ -824,12 +824,32 @@ h3 {
    16. REVEAL VIA INTERSECTION OBSERVER
 ======================================== */
 
+/* Conteúdo fica visível por padrão, mesmo se o JavaScript falhar */
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* Só esconde conteúdo quando o JavaScript confirmou que está funcionando */
+.js-reveal-ready .reveal {
   opacity: 0;
   transform: translateY(1.25rem);
   transition:
     opacity 600ms ease,
     transform 600ms ease;
+}
+
+.js-reveal-ready .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal-ready .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .reveal.is-visible {
