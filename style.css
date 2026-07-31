@@ -845,3 +845,7 @@ h3 {
     transition: none;
   }
 }
+.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
