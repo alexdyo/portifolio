@@ -634,3 +634,189 @@ h3 {
     animation-iteration-count: 1 !important;
   }
 }
+/* ========================================
+   14. REFINAMENTO PARA DESKTOP
+   Adicionar ao final do style.css
+======================================== */
+
+@media (min-width: 64rem) {
+  /* Hero em duas colunas */
+  .hero {
+    min-height: 43rem;
+    display: grid;
+    align-items: center;
+    padding-block: var(--space-4xl);
+  }
+
+  .hero__grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(19rem, 0.85fr);
+    align-items: center;
+    gap: clamp(3rem, 7vw, 7rem);
+  }
+
+  .hero h1 {
+    font-size: clamp(3.75rem, 5vw, 5.25rem);
+  }
+
+  .hero__subtitle {
+    max-width: 34rem;
+    font-size: 1.125rem;
+  }
+
+  .hero__visual {
+    width: 100%;
+    max-width: 27rem;
+    margin-inline: 0 0;
+    justify-self: end;
+  }
+
+  .hero__photo-frame {
+    border-width: 0.75rem;
+    border-radius: 1.5rem;
+  }
+
+  .hero::after {
+    top: -10rem;
+    right: -5rem;
+    width: 29rem;
+    height: 29rem;
+  }
+
+  /* Cards de serviços em quatro colunas */
+  .services__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .service-card {
+    min-height: 18rem;
+    padding: var(--space-xl);
+  }
+
+  /* Seção de cases com maior respiro visual */
+  .results {
+    padding-block: clamp(6rem, 11vw, 10rem);
+  }
+
+  .section__heading--results {
+    max-width: 38rem;
+    margin-bottom: clamp(4.5rem, 8vw, 7rem);
+  }
+
+  .results__list {
+    gap: clamp(5rem, 10vw, 9rem);
+  }
+
+  /* Card de case: texto e imagem lado a lado */
+  .case {
+    grid-template-columns: minmax(0, 0.88fr) minmax(25rem, 1.12fr);
+    align-items: center;
+    gap: clamp(2.5rem, 6vw, 6rem);
+    padding-top: clamp(3.5rem, 6vw, 5rem);
+  }
+
+  /* Cases pares: imagem e texto alternados */
+  .case--reverse .case__content {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .case--reverse .case__figure {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .case h3 {
+    font-size: clamp(2.25rem, 3.2vw, 3.5rem);
+  }
+
+  .case__content > p:last-child {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .case__figure {
+    border-radius: var(--radius-lg);
+    transition:
+      transform var(--transition-base),
+      box-shadow var(--transition-base),
+      border-color var(--transition-base);
+  }
+
+  .case__figure:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 1.5rem 3.5rem rgba(0, 0, 0, 0.24);
+    transform: translateY(-0.35rem);
+  }
+
+  .case__figure img {
+    aspect-ratio: 16 / 10;
+  }
+
+  .case__figure figcaption {
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  /* Skills com dimensão mais equilibrada no desktop */
+  .skills__list {
+    max-width: 58rem;
+    gap: var(--space-md);
+  }
+
+  .skills__list li {
+    padding: 0.8125rem 1rem;
+  }
+
+  /* CTA final mais editorial */
+  .cta {
+    padding-block: clamp(6rem, 10vw, 9rem);
+  }
+
+  .cta__content {
+    max-width: 48rem;
+  }
+
+  .cta h2 {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+  }
+
+  .cta__text {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+}
+
+/* ========================================
+   15. PERFORMANCE DE RENDERIZAÇÃO
+======================================== */
+
+/* Adia parte do trabalho de renderização dos cases fora da tela */
+.case {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 38rem;
+}
+
+/* Evita hover visual em telas predominantemente touch */
+@media (hover: none) {
+  .button:hover,
+  .service-card:hover,
+  .case__figure:hover {
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+/* Refinamento para monitores mais largos */
+@media (min-width: 80rem) {
+  .hero__grid {
+    gap: 8rem;
+  }
+
+  .hero__visual {
+    max-width: 29rem;
+  }
+
+  .case {
+    grid-template-columns: minmax(0, 0.82fr) minmax(30rem, 1.18fr);
+  }
+}
