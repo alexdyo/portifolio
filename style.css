@@ -263,18 +263,18 @@ h3 {
 .hero__photo-zone {
   position: relative;
   overflow: hidden;
-  height: 30vh;
+  height: 20vh;
   min-height: 12rem;
   background-image: url("assets/foto-back-perfil.jpeg");
   background-position: center 12%;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.6;
+  opacity: 0.9;
 }
 .hero__photo-zone::before {
   position: absolute;
   inset: 0;
-  backdrop-filter: blur(0.25rem) brightness(0.85) saturate(0.7);
+  backdrop-filter: blur(0.9rem) brightness(0.9) saturate(0.7);
   content: "";
   pointer-events: none;
 }
@@ -390,7 +390,7 @@ h3 {
         rgba(15, 31, 22, 0.9) 14%,
         rgba(15, 31, 22, 0.5) 30%,
         rgba(15, 31, 22, 0.15) 48%,
-        transparent 65%
+        transparent 85%
       ),
       linear-gradient(
         180deg,
