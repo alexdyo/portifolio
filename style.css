@@ -250,59 +250,50 @@ h3 {
 }
 
 /* ========================================
-   6. HERO
-======================================== */
-
-/* ========================================
-   6. HERO COM FOTO EM BACKGROUND
+   6. HERO — FOTO E TEXTO EM ÁREAS SEPARADAS
 ======================================== */
 
 .hero {
   position: relative;
-  min-height: 37.5rem;
   display: grid;
-  align-items: center;
-  overflow: hidden;
-  padding-block: var(--space-3xl);
   background-color: var(--color-primary-dark);
 }
 
-.hero__background {
-  position: absolute;
-  inset: 0;
+/* Área da foto */
+.hero__photo-zone {
+  position: relative;
+  overflow: hidden;
+  height: 60vh;
+  min-height: 22rem;
   background-image: url("/portifolio/assets/foto-back-perfil.jpeg");
-  background-position: right 8% center;
+  background-position: center 18%;
   background-repeat: no-repeat;
-  background-size: auto 92%;
-  opacity: 0.9;
-  transform: none;
-}
-.hero::after {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      160deg,
-      rgba(18, 48, 32, 0.2) 0%,
-      rgba(18, 48, 32, 0.3) 100%
-    );
-  content: "";
-  pointer-events: none;
+  background-size: cover;
 }
 
+/* Degradê que só aparece na parte inferior da foto, nunca no rosto */
+.hero__photo-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 55%,
+    rgba(17, 43, 29, 0.55) 82%,
+    rgba(17, 43, 29, 0.98) 100%
+  );
+}
+
+/* Área do texto */
 .hero__content-wrap {
-  position: relative;
-  z-index: 1;
+  padding-block: var(--space-xl) var(--space-2xl);
 }
 
 .hero__content {
-  max-width: 46rem;
-  padding: var(--space-lg);
-  border: 0.0625rem solid rgba(255, 255, 255, 0.18);
-  border-radius: var(--radius-lg);
-  background-color: rgba(17, 43, 29, 0.35);
-  box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(0.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .hero__eyebrow,
@@ -316,29 +307,28 @@ h3 {
 }
 
 .hero h1 {
-  max-width: 13ch;
+  max-width: 15ch;
   margin-top: var(--space-md);
-  font-size: clamp(2.2rem, 10vw, 4.25rem);
+  font-size: clamp(1.9rem, 8vw, 2.6rem);
+  line-height: 1.15;
 }
 
 .hero__subtitle {
-  max-width: 34rem;
-  margin-top: var(--space-lg);
-  font-size: clamp(1rem, 3.6vw, 1.125rem);
-  line-height: 1.7;
+  max-width: 32rem;
+  margin-top: var(--space-md);
+  font-size: 0.9375rem;
+  line-height: 1.6;
 }
 
-.hero__actions,
-.cta__actions {
+.hero__actions {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: var(--space-sm);
-  margin-top: var(--space-xl);
+  margin-top: var(--space-lg);
 }
 
-.hero__actions .button,
-.cta__actions .button {
+.hero__actions .button {
   width: 100%;
 }
 
@@ -363,7 +353,6 @@ h3 {
   background-color: rgba(255, 255, 255, 0.12);
   color: var(--color-surface);
 }
-
 /* ========================================
    7. SERVIÇOS
 ======================================== */
@@ -673,7 +662,57 @@ h3 {
 ======================================== */
 
 @media (min-width: 64rem) {
-  /* Hero em duas colunas */
+ /* Hero em duas colunas no desktop */
+.hero {
+  grid-template-columns: minmax(0, 1fr) minmax(26rem, 0.95fr);
+  align-items: stretch;
+  min-height: 38rem;
+}
+
+.hero__photo-zone {
+  order: 2;
+  height: 100%;
+  min-height: 38rem;
+}
+
+.hero__photo-fade {
+  background: linear-gradient(
+    90deg,
+    rgba(17, 43, 29, 0.98) 0%,
+    rgba(17, 43, 29, 0.55) 14%,
+    transparent 38%
+  );
+}
+
+.hero__content-wrap {
+  order: 1;
+  display: flex;
+  align-items: center;
+  padding-block: var(--space-4xl);
+}
+
+.hero__content {
+  max-width: 30rem;
+}
+
+.hero h1 {
+  max-width: 12ch;
+  font-size: clamp(2.75rem, 4.5vw, 3.75rem);
+}
+
+.hero__subtitle {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.hero__actions {
+  flex-direction: row;
+  width: auto;
+}
+
+.hero__actions .button {
+  width: auto;
+}
  /* Hero em largura ampla */
 .hero {
   min-height: clamp(36rem, 72vh, 46rem);
