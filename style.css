@@ -270,7 +270,7 @@ h3 {
 .hero__background {
   position: absolute;
   inset: 0;
-  background-image: url("/portifolio/assets/foto-back-perfil.jpeg");
+  background-image: url("../portifolio/assets/foto-back-perfil.jpeg");
   background-position: center 22%;
   background-repeat: no-repeat;
   background-size: cover;
