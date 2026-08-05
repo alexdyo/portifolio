@@ -270,14 +270,13 @@ h3 {
 .hero__background {
   position: absolute;
   inset: 0;
-  background-image: url("assets/foto-back-perfil.jpeg");
-  background-position: right 15% center;
+  background-image: url("/portifolio/assets/foto-back-perfil.jpeg");
+  background-position: right 8% center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: auto 92%;
   opacity: 0.9;
-  transform: scale(1.03);
+  transform: none;
 }
-
 .hero::after {
   position: absolute;
   inset: 0;
@@ -687,15 +686,16 @@ h3 {
 }
 
 .hero__content-wrap {
-  max-width: 58rem;
+  max-width: 38rem;
 }
 
 .hero__content {
-  padding: clamp(2rem, 5vw, 3.5rem);
+  padding: clamp(2rem, 4vw, 3rem);
 }
 
 .hero h1 {
-  font-size: clamp(3.5rem, 5vw, 5rem);
+  font-size: clamp(3rem, 4.5vw, 4.25rem);
+  max-width: 11ch;
 }
 
 .hero__subtitle {
@@ -955,5 +955,79 @@ h3 {
     background-color: rgba(17, 43, 29, 0.78);
     backdrop-filter: none;
     border-color: rgba(255, 255, 255, 0.12);
+  }
+}
+/* ========================================
+   19. MOBILE: FOTO ACIMA, TEXTO ABAIXO
+======================================== */
+
+@media (max-width: 39.9375rem) {
+  .hero {
+    min-height: auto;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-items: start;
+    padding-block: 0;
+  }
+
+  /* Área da foto: ocupa metade superior da tela */
+  .hero__background {
+    position: relative;
+    inset: auto;
+    height: 55vh;
+    min-height: 20rem;
+    background-position: center 25%;
+    background-size: cover;
+    opacity: 1;
+  }
+
+  /* Degradê sutil só no topo da foto, não no rosto */
+  .hero__background::before {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(18, 48, 32, 0.3) 0%,
+        rgba(18, 48, 32, 0.05) 40%,
+        transparent 100%
+      );
+    content: "";
+    pointer-events: none;
+  }
+
+  /* Remove a camada escura que estava cobrindo tudo */
+  .hero::after {
+    display: none;
+  }
+
+  /* Texto: abaixo da foto, sem vidro fosco */
+  .hero__content-wrap {
+    padding-inline: 1rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero__content {
+    margin-top: -2rem;
+    background-color: rgba(17, 43, 29, 0.92);
+    backdrop-filter: none;
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 -1rem 2rem rgba(0, 0, 0, 0.2);
+  }
+
+  /* Texto menor para caber melhor */
+  .hero h1 {
+    font-size: clamp(1.8rem, 8.5vw, 2.4rem);
+    line-height: 1.15;
+  }
+
+  .hero__subtitle {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .hero__actions .button {
+    min-height: 2.875rem;
+    font-size: 0.875rem;
   }
 }
