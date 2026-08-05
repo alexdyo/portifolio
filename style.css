@@ -263,13 +263,20 @@ h3 {
 .hero__photo-zone {
   position: relative;
   overflow: hidden;
-  height: 42vh;
-  min-height: 16rem;
+  height: 30vh;
+  min-height: 12rem;
   background-image: url("assets/foto-back-perfil.jpeg");
-  background-position: center 14%;
+  background-position: center 12%;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.75;
+  opacity: 0.6;
+}
+.hero__photo-zone::before {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(0.25rem) brightness(0.85) saturate(0.7);
+  content: "";
+  pointer-events: none;
 }
 
 /* Degradê mobile: some no rosto, aparece só perto do texto */
@@ -278,9 +285,9 @@ h3 {
   inset: 0;
   background: linear-gradient(
     180deg,
-    transparent 0%,
-    transparent 35%,
-    rgba(15, 31, 22, 0.85) 75%,
+    rgba(15, 31, 22, 0.35) 0%,
+    rgba(15, 31, 22, 0.2) 30%,
+    rgba(15, 31, 22, 0.85) 70%,
     #0F1F16 100%
   );
 }
