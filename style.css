@@ -271,7 +271,7 @@ h3 {
   position: absolute;
   inset: 0;
   background-image: url("assets/foto-back-perfil.jpeg");
-  background-position: center 22%;
+  background-position: right 15% center;
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 0.9;
@@ -927,5 +927,33 @@ h3 {
   .cta__text {
     font-size: 0.9375rem;
     line-height: 1.75;
+  }
+}
+/* ========================================
+   18. MOBILE: FOTO VISÍVEL SEM VIDRO
+======================================== */
+
+@media (max-width: 39.9375rem) {
+  /* Aumenta a visibilidade da foto */
+  .hero__background {
+    opacity: 0.65;
+    background-position: center 20%;
+  }
+
+  /* Reduz a camada escura para não esconder o rosto */
+  .hero::after {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(18, 48, 32, 0.2) 0%,
+        rgba(18, 48, 32, 0.4) 100%
+      );
+  }
+
+  /* Remove o efeito de vidro do texto, mantendo legibilidade */
+  .hero__content {
+    background-color: rgba(17, 43, 29, 0.78);
+    backdrop-filter: none;
+    border-color: rgba(255, 255, 255, 0.12);
   }
 }
