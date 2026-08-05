@@ -263,12 +263,13 @@ h3 {
 .hero__photo-zone {
   position: relative;
   overflow: hidden;
-  height: 60vh;
-  min-height: 22rem;
+  height: 42vh;
+  min-height: 16rem;
   background-image: url("assets/foto-back-perfil.jpeg");
-  background-position: center 18%;
+  background-position: center 14%;
   background-repeat: no-repeat;
   background-size: cover;
+  opacity: 0.75;
 }
 
 /* Degradê mobile: some no rosto, aparece só perto do texto */
@@ -278,15 +279,16 @@ h3 {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    transparent 55%,
-    rgba(15, 31, 22, 0.7) 85%,
-    rgba(15, 31, 22, 1) 100%
+    transparent 35%,
+    rgba(15, 31, 22, 0.85) 75%,
+    #0F1F16 100%
   );
 }
 
 /* Área do texto */
 .hero__content-wrap {
   padding-block: var(--space-xl) var(--space-2xl);
+  margin-top: -1.5rem;
   background-color: #0F1F16;
 }
 
@@ -373,16 +375,27 @@ h3 {
     min-height: 38rem;
   }
 
-  .hero__photo-fade {
-    background: linear-gradient(
-      90deg,
-      #0F1F16 0%,
-      rgba(15, 31, 22, 0.85) 10%,
-      rgba(15, 31, 22, 0.35) 26%,
-      transparent 45%
-    );
+ .hero__photo-fade {
+    background:
+      linear-gradient(
+        90deg,
+        #0F1F16 0%,
+        rgba(15, 31, 22, 0.9) 14%,
+        rgba(15, 31, 22, 0.5) 30%,
+        rgba(15, 31, 22, 0.15) 48%,
+        transparent 65%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(15, 31, 22, 0.55) 0%,
+        transparent 18%,
+        transparent 82%,
+        rgba(15, 31, 22, 0.65) 100%
+      );
   }
-
+  .hero__photo-zone {
+    box-shadow: inset 0 0 6rem 2rem #0F1F16;
+  }
   .hero__content-wrap {
     order: 1;
     display: flex;
@@ -608,7 +621,7 @@ h3 {
   width: 20rem;
   height: 20rem;
   border-radius: 50%;
-  background-color: rgba(46, 139, 87, 0.1);
+  (46, 139, 87, 0.1);
   content: "";
 }
 
