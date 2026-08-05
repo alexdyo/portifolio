@@ -274,7 +274,7 @@ h3 {
   background-position: center 22%;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 1;
+  opacity: 0.3;
   transform: scale(1.03);
 }
 
