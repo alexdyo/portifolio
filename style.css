@@ -673,10 +673,6 @@ h3 {
     padding-block: var(--space-5xl);
   }
 
-  .hero {
-    padding-block: var(--space-4xl) var(--space-5xl);
-  }
-
   .hero__actions,
   .cta__actions {
     flex-direction: row;
@@ -942,105 +938,4 @@ h3 {
     line-height: 1.75;
   }
 }
-/* ========================================
-   18. MOBILE: FOTO VISÍVEL SEM VIDRO
-======================================== */
 
-@media (max-width: 39.9375rem) {
-  /* Aumenta a visibilidade da foto */
-  .hero__background {
-    opacity: 0.65;
-    background-position: center 20%;
-  }
-
-  /* Reduz a camada escura para não esconder o rosto */
-  .hero::after {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(18, 48, 32, 0.2) 0%,
-        rgba(18, 48, 32, 0.4) 100%
-      );
-  }
-
-  /* Remove o efeito de vidro do texto, mantendo legibilidade */
-  .hero__content {
-    background-color: rgba(17, 43, 29, 0.78);
-    backdrop-filter: none;
-    border-color: rgba(255, 255, 255, 0.12);
-  }
-}
-/* ========================================
-   19. MOBILE: FOTO ACIMA, TEXTO ABAIXO
-======================================== */
-
-@media (max-width: 39.9375rem) {
-  .hero {
-    min-height: auto;
-    display: grid;
-    grid-template-rows: auto 1fr;
-    align-items: start;
-    padding-block: 0;
-  }
-
-  /* Área da foto: ocupa metade superior da tela */
-  .hero__background {
-    position: relative;
-    inset: auto;
-    height: 55vh;
-    min-height: 20rem;
-    background-position: center 25%;
-    background-size: cover;
-    opacity: 1;
-  }
-
-  /* Degradê sutil só no topo da foto, não no rosto */
-  .hero__background::before {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(18, 48, 32, 0.3) 0%,
-        rgba(18, 48, 32, 0.05) 40%,
-        transparent 100%
-      );
-    content: "";
-    pointer-events: none;
-  }
-
-  /* Remove a camada escura que estava cobrindo tudo */
-  .hero::after {
-    display: none;
-  }
-
-  /* Texto: abaixo da foto, sem vidro fosco */
-  .hero__content-wrap {
-    padding-inline: 1rem;
-    padding-bottom: 3rem;
-  }
-
-  .hero__content {
-    margin-top: -2rem;
-    background-color: rgba(17, 43, 29, 0.92);
-    backdrop-filter: none;
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 -1rem 2rem rgba(0, 0, 0, 0.2);
-  }
-
-  /* Texto menor para caber melhor */
-  .hero h1 {
-    font-size: clamp(1.8rem, 8.5vw, 2.4rem);
-    line-height: 1.15;
-  }
-
-  .hero__subtitle {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-  }
-
-  .hero__actions .button {
-    min-height: 2.875rem;
-    font-size: 0.875rem;
-  }
-}
