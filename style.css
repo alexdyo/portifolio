@@ -253,53 +253,80 @@ h3 {
    6. HERO
 ======================================== */
 
+/* ========================================
+   6. HERO COM FOTO EM BACKGROUND
+======================================== */
+
 .hero {
   position: relative;
+  min-height: 37.5rem;
+  display: grid;
+  align-items: center;
   overflow: hidden;
-  padding-block: var(--space-3xl) var(--space-4xl);
-  background:
-    linear-gradient(145deg, rgba(232, 241, 234, 0.9), rgba(250, 250, 248, 0.3)),
-    var(--color-background);
+  padding-block: var(--space-3xl);
+  background-color: var(--color-primary-dark);
+}
+
+.hero__background {
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/images/alex-dyones.jpg");
+  background-position: center 22%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.24;
+  transform: scale(1.03);
 }
 
 .hero::after {
   position: absolute;
-  z-index: 0;
-  top: -8rem;
-  right: -8rem;
-  width: 18rem;
-  height: 18rem;
-  border-radius: 50%;
-  background-color: var(--color-soft-green);
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18, 48, 32, 0.72) 0%,
+      rgba(18, 48, 32, 0.86) 100%
+    );
   content: "";
-  filter: blur(0.25rem);
+  pointer-events: none;
 }
 
-.hero__grid {
+.hero__content-wrap {
   position: relative;
   z-index: 1;
-  display: grid;
-  gap: var(--space-2xl);
 }
 
 .hero__content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  max-width: 46rem;
+  padding: var(--space-lg);
+  border: 0.0625rem solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-lg);
+  background-color: rgba(17, 43, 29, 0.62);
+  box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(0.375rem);
+}
+
+.hero__eyebrow,
+.hero h1,
+.hero__subtitle {
+  color: var(--color-surface);
+}
+
+.hero__eyebrow::before {
+  background-color: #BFE4CB;
 }
 
 .hero h1 {
-  max-width: 14ch;
+  max-width: 13ch;
   margin-top: var(--space-md);
-  font-size: clamp(2.5rem, 11vw, 4.5rem);
-  letter-spacing: -0.055em;
+  font-size: clamp(2.2rem, 10vw, 4.25rem);
 }
 
 .hero__subtitle {
-  max-width: 36rem;
+  max-width: 34rem;
   margin-top: var(--space-lg);
-  color: var(--color-text-secondary);
-  font-size: clamp(1rem, 4vw, 1.125rem);
+  font-size: clamp(1rem, 3.6vw, 1.125rem);
+  line-height: 1.7;
 }
 
 .hero__actions,
@@ -316,37 +343,26 @@ h3 {
   width: 100%;
 }
 
-.hero__visual {
-  width: min(100%, 25rem);
-  margin-inline: auto;
+.button--on-image {
+  background-color: #BFE4CB;
+  color: var(--color-primary-dark);
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.2);
 }
 
-.hero__photo-frame {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 4 / 5;
-  border: 0.625rem solid var(--color-surface);
-  border-radius: var(--radius-lg);
-  background:
-    linear-gradient(135deg, var(--color-soft-green), var(--color-soft-green-dark));
-  box-shadow: var(--shadow-lg);
+.button--on-image:hover {
+  background-color: var(--color-surface);
 }
 
-.hero__photo-frame::before {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  border: 0.0625rem solid rgba(255, 255, 255, 0.7);
-  border-radius: inherit;
-  content: "";
-  pointer-events: none;
+.button--on-image-outline {
+  border-color: rgba(255, 255, 255, 0.72);
+  background-color: transparent;
+  color: var(--color-surface);
 }
 
-.hero__photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+.button--on-image-outline:hover {
+  border-color: var(--color-surface);
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--color-surface);
 }
 
 /* ========================================
@@ -464,9 +480,27 @@ h3 {
 
 .case__figure img {
   width: 100%;
-  aspect-ratio: 3 / 2;
+  height: auto;
+  aspect-ratio: 16 / 10;
   background-color: #D7E7DA;
   object-fit: cover;
+}
+/* Mobile: imagens mais compactas, mantendo o print inteiro em um scroll */
+@media (max-width: 39.9375rem) {
+  .case__figure {
+    max-width: 100%;
+  }
+
+  .case__figure img {
+    max-height: 13.75rem;
+    object-fit: contain;
+    object-position: center;
+    padding: var(--space-xs);
+  }
+
+  .case__figure figcaption {
+    line-height: 1.5;
+  }
 }
 
 .case__figure figcaption {
@@ -641,46 +675,33 @@ h3 {
 
 @media (min-width: 64rem) {
   /* Hero em duas colunas */
-  .hero {
-    min-height: 43rem;
-    display: grid;
-    align-items: center;
-    padding-block: var(--space-4xl);
-  }
+ /* Hero em largura ampla */
+.hero {
+  min-height: clamp(36rem, 72vh, 46rem);
+  padding-block: var(--space-5xl);
+}
 
-  .hero__grid {
-    grid-template-columns: minmax(0, 1.15fr) minmax(19rem, 0.85fr);
-    align-items: center;
-    gap: clamp(3rem, 7vw, 7rem);
-  }
+.hero__background {
+  background-position: right 20% center;
+  opacity: 0.3;
+}
 
-  .hero h1 {
-    font-size: clamp(3.75rem, 5vw, 5.25rem);
-  }
+.hero__content-wrap {
+  max-width: 58rem;
+}
 
-  .hero__subtitle {
-    max-width: 34rem;
-    font-size: 1.125rem;
-  }
+.hero__content {
+  padding: clamp(2rem, 5vw, 3.5rem);
+}
 
-  .hero__visual {
-    width: 100%;
-    max-width: 27rem;
-    margin-inline: 0 0;
-    justify-self: end;
-  }
+.hero h1 {
+  font-size: clamp(3.5rem, 5vw, 5rem);
+}
 
-  .hero__photo-frame {
-    border-width: 0.75rem;
-    border-radius: 1.5rem;
-  }
-
-  .hero::after {
-    top: -10rem;
-    right: -5rem;
-    width: 29rem;
-    height: 29rem;
-  }
+.hero__subtitle {
+  max-width: 35rem;
+  font-size: 1.125rem;
+}
 
   /* Cards de serviços em quatro colunas */
   .services__grid {
@@ -808,14 +829,7 @@ h3 {
 
 /* Refinamento para monitores mais largos */
 @media (min-width: 80rem) {
-  .hero__grid {
-    gap: 8rem;
-  }
-
-  .hero__visual {
-    max-width: 29rem;
-  }
-
+   
   .case {
     grid-template-columns: minmax(0, 0.82fr) minmax(30rem, 1.18fr);
   }
@@ -849,5 +863,69 @@ h3 {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+/* ========================================
+   17. COMPACTAÇÃO FINAL PARA MOBILE
+======================================== */
+
+@media (max-width: 39.9375rem) {
+  .section {
+    padding-block: 3.5rem;
+  }
+
+  .section__heading {
+    margin-bottom: var(--space-xl);
+  }
+
+  .section__heading h2,
+  .cta h2 {
+    font-size: clamp(1.8rem, 9vw, 2.5rem);
+  }
+
+  .services__grid {
+    gap: var(--space-sm);
+  }
+
+  .service-card {
+    min-height: auto;
+    padding: var(--space-lg);
+  }
+
+  .service-card__number {
+    margin-bottom: var(--space-lg);
+  }
+
+  .results__list {
+    gap: var(--space-3xl);
+  }
+
+  .case {
+    gap: var(--space-lg);
+    padding-top: var(--space-xl);
+  }
+
+  .case h3 {
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+  }
+
+  .case__content > p:last-child,
+  .service-card p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  .skills__list {
+    gap: var(--space-xs);
+  }
+
+  .skills__list li {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .cta__text {
+    font-size: 0.9375rem;
+    line-height: 1.75;
   }
 }
