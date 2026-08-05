@@ -287,8 +287,8 @@ h3 {
 
 /* Área do texto */
 .hero__content-wrap {
-  padding-block: var(--space-xl) var(--space-2xl);
-  margin-top: -1.5rem;
+  padding-block: var(--space-sm) var(--space-2xl);
+  margin-top: -3rem;
   background-color: #0F1F16;
 }
 
