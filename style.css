@@ -727,6 +727,7 @@ h3 {
   }
 }
   /* Cards de serviços em quatro colunas */
+@media (min-width: 64rem) {
   .services__grid {
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-lg);
