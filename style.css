@@ -507,70 +507,105 @@ h3 {
   gap: var(--space-3xl);
 }
 
+/* ===== Ajuste do Card de Case (título, espaçamento e imagem) ===== */
+
 .case {
   display: grid;
-  gap: var(--space-xl);
-  padding-top: var(--space-2xl);
-  border-top: 0.0625rem solid rgba(255, 255, 255, 0.2);
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.case--reverse {
+  grid-template-columns: 1.2fr 1fr;
+}
+
+.case--reverse .case__content {
+  order: 2;
+}
+
+.case--reverse .case__figure {
+  order: 1;
+}
+
+.case__content {
+  display: flex;
+  flex-direction: column;
 }
 
 .case__index {
-  margin-bottom: var(--space-sm);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
 }
 
-.case h3 {
-  max-width: 20ch;
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 7vw, 2.5rem);
-  letter-spacing: -0.04em;
+/* Espaço real entre título e primeiro parágrafo */
+.case__content h3 {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
 }
 
-.case__content > p:last-child {
-  max-width: 34rem;
-  margin-top: var(--space-md);
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 0.9375rem;
+.case__content p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
+.case__highlight {
+  margin-top: 0.5rem;
+  padding: 0.9rem 1.1rem;
+  border-left: 3px solid currentColor;
+  background: rgba(255, 255, 255, 0.06);
+  font-weight: 500;
+}
+
+/* ===== Imagem: mantém a proporção real 1600x800 sem cortar ===== */
 .case__figure {
-  overflow: hidden;
-  border: 0.0625rem solid rgba(255, 255, 255, 0.24);
-  border-radius: var(--radius-md);
-  background-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.16);
+  margin: 0;
+  width: 100%;
 }
 
 .case__figure img {
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 10;
-  background-color: #D7E7DA;
-  object-fit: cover;
-}
-/* Mobile: imagens mais compactas, mantendo o print inteiro em um scroll */
-@media (max-width: 39.9375rem) {
-  .case__figure {
-    max-width: 100%;
-  }
-
-  .case__figure img {
-    max-height: 13.75rem;
-    object-fit: contain;
-    object-position: center;
-    padding: var(--space-xs);
-  }
-
-  .case__figure figcaption {
-    line-height: 1.5;
-  }
+  aspect-ratio: 1600 / 800; /* mesma proporção do arquivo original, evita corte */
+  object-fit: contain;      /* garante que nenhuma coluna da tabela seja cortada */
+  border-radius: 12px;
+  display: block;
 }
 
 .case__figure figcaption {
-  padding: var(--space-sm) var(--space-md);
-  color: rgba(255, 255, 255, 0.76);
-  font-size: 0.8125rem;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  line-height: 1.5;
 }
 
+/* ===== Mobile: empilha texto e imagem, título ganha respiro ===== */
+@media (max-width: 768px) {
+  .case,
+  .case--reverse {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .case--reverse .case__content,
+  .case--reverse .case__figure {
+    order: initial;
+  }
+
+  .case__content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .case__figure img {
+    aspect-ratio: 1600 / 800;
+    object-fit: contain;
+  }
+}
 /* ========================================
    9. HABILIDADES
 ======================================== */
