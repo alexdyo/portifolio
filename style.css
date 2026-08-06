@@ -515,6 +515,32 @@ h3 {
   gap: 2.5rem;
   align-items: center;
 }
+.case__stats-row {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.case__stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.case__stat-value {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent, #4ADE80);
+}
+
+.case__stat-label {
+  font-size: 0.8rem;
+  opacity: 0.75;
+  margin-top: 0.25rem;
+  max-width: 10ch;
+}
 
 .case--reverse {
   grid-template-columns: 1.2fr 1fr;
@@ -550,15 +576,16 @@ h3 {
 
 .case__content p {
   margin-bottom: 1rem;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .case__highlight {
-  margin-top: 0.5rem;
-  padding: 0.9rem 1.1rem;
-  border-left: 3px solid currentColor;
+  margin-top: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--accent, #4ADE80);
   background: rgba(255, 255, 255, 0.06);
   font-weight: 500;
+  line-height: 1.55;
 }
 
 /* ===== Imagem: mantém a proporção real 1600x800 sem cortar ===== */
@@ -594,6 +621,12 @@ h3 {
   .case--reverse .case__content,
   .case--reverse .case__figure {
     order: initial;
+  }
+   .case__stats-row {
+    gap: 1.25rem;
+  }
+  .case__stat-value {
+    font-size: 2rem;
   }
 
   .case__content h3 {
