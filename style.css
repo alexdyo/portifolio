@@ -695,6 +695,45 @@ h3 {
 .lightbox-close:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+.tools__categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.tools__group-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.tools__list,
+.tools__cert-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tools__list li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.95rem;
+}
+
+.tools__certifications {
+  padding: 1.5rem;
+  border-left: 3px solid var(--accent, #4ADE80);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.tools__cert-list li {
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
 @media (max-width: 600px) {
   .lightbox-overlay {
     padding: 1rem;
@@ -702,6 +741,10 @@ h3 {
   .lightbox-close {
     top: 0.75rem;
     right: 0.75rem;
+  }
+.tools__categories {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 /* ========================================
