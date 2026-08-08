@@ -52,3 +52,58 @@
     iniciarReveal();
   }
 })();
+// Lightbox de zoom para imagens dos cases
+// Sem dependências externas. Funciona em desktop e mobile.
+
+(function () {
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-hidden', 'true');
+
+  const img = document.createElement('img');
+  img.alt = '';
+
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'lightbox-close';
+  closeBtn.setAttribute('aria-label', 'Fechar imagem ampliada');
+  closeBtn.innerHTML = '&times;';
+
+  overlay.appendChild(closeBtn);
+  overlay.appendChild(img);
+  document.body.appendChild(overlay);
+
+  function openLightbox(src, alt) {
+    img.src = src;
+    img.alt = alt || '';
+    overlay.classList.add('is-active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    overlay.classList.remove('is-active');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.case__figure img').forEach((figureImg) => {
+    figureImg.addEventListener('click', () => {
+      openLightbox(figureImg.src, figureImg.alt);
+    });
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay || e.target === img) {
+      closeLightbox();
+    }
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-active')) {
+      closeLightbox();
+    }
+  });
+})();
