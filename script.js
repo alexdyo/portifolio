@@ -107,3 +107,30 @@
     }
   });
 })();
+// Cards de ferramentas: clique para expandir e animação de entrada ao rolar
+
+(function () {
+  const cards = document.querySelectorAll('.tool-card');
+
+  cards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const isOpen = card.getAttribute('aria-expanded') === 'true';
+      cards.forEach((c) => c.setAttribute('aria-expanded', 'false'));
+      card.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  cards.forEach((card) => observer.observe(card));
+})();
